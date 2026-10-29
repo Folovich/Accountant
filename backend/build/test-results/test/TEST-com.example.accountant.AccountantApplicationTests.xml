@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.accountant.AccountantApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-29T19:40:27.309Z" hostname="DESCTOP42" time="4.017">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.example.accountant.AccountantApplicationTests" time="0.223"/>
+  <system-out><![CDATA[22:40:27.434 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.accountant.AccountantApplicationTests]: AccountantApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:40:27.502 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.accountant.AccountantApplication for test class com.example.accountant.AccountantApplicationTests
+22:40:27.557 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.accountant.AccountantApplicationTests]: AccountantApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:40:27.558 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.accountant.AccountantApplication for test class com.example.accountant.AccountantApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-10-29T22:40:27.779+03:00  INFO 36672 --- [    Test worker] c.e.a.AccountantApplicationTests         : Starting AccountantApplicationTests using Java 21.0.11 with PID 36672 (started by bogda in C:\IdeaProjects\Accountant\backend)
+2026-10-29T22:40:27.779+03:00  INFO 36672 --- [    Test worker] c.e.a.AccountantApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2026-10-29T22:40:28.192+03:00  INFO 36672 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-29T22:40:28.227+03:00  INFO 36672 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 3 JPA repository interfaces.
+2026-10-29T22:40:28.584+03:00  INFO 36672 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-29T22:40:28.772+03:00  INFO 36672 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./data/accountant user=SA
+2026-10-29T22:40:28.773+03:00  INFO 36672 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-29T22:40:28.931+03:00  INFO 36672 --- [    Test worker] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-29T22:40:29.051+03:00  INFO 36672 --- [    Test worker] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-10-29T22:40:29.367+03:00  INFO 36672 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-29T22:40:29.415+03:00  INFO 36672 --- [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:file:./data/accountant]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: ACCOUNTANT/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-29T22:40:29.950+03:00  INFO 36672 --- [    Test worker] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-29T22:40:29.990+03:00  INFO 36672 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-29T22:40:30.073+03:00  INFO 36672 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-29T22:40:30.241+03:00  INFO 36672 --- [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-29T22:40:30.286+03:00  WARN 36672 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-29T22:40:30.661+03:00  INFO 36672 --- [    Test worker] o.s.b.h.a.H2ConsoleAutoConfiguration     : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/accountant'
+2026-10-29T22:40:30.776+03:00  INFO 36672 --- [    Test worker] c.e.a.AccountantApplicationTests         : Started AccountantApplicationTests in 3.171 seconds (process running for 4.046)
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\bogda\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.18.15\de6980bb799c25bb1fe9e6c434201299cb5e694e\byte-buddy-agent-1.18.15.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

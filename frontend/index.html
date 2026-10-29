@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101311">
+  <title>Finora — расписание бухгалтера</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a href="#" class="logo" aria-label="Finora — главная">finora<span>.</span></a>
+      <div id="connectionIndicator" class="connection-indicator">
+        <span id="connectionDot" class="status-dot"></span>
+        <span id="connectionStatus">Подключение</span>
+      </div>
+      <div id="profileBar" class="profile-bar" hidden>
+        <div class="profile-copy">
+          <span id="accountIdentity"></span>
+          <span id="accountRole" class="role-badge"></span>
+        </div>
+        <button id="logoutButton" class="icon-button" type="button" aria-label="Выйти из аккаунта" title="Выйти">
+          <span aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </header>
+
+    <section id="authView" class="auth-view" aria-labelledby="authTitle">
+      <div class="auth-card">
+        <div class="auth-mark" aria-hidden="true">f.</div>
+        <p class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</p>
+        <h1 id="authTitle">С возвращением</h1>
+        <p id="authDescription" class="auth-description">Войдите, чтобы посмотреть расписание бухгалтера.</p>
+
+        <form id="accountLoginForm" class="auth-form">
+          <label for="loginEmail">Электронная почта</label>
+          <input id="loginEmail" name="email" type="email" required autocomplete="username" placeholder="name@example.com">
+          <label for="loginPassword">Пароль</label>
+          <input id="loginPassword" name="password" type="password" required autocomplete="current-password" placeholder="Введите пароль">
+          <button type="submit" class="primary-button">Войти <span aria-hidden="true">→</span></button>
+          <p id="loginStatus" class="form-notice" role="status"></p>
+        </form>
+
+        <form id="accountRegisterForm" class="auth-form" hidden>
+          <label for="registerEmail">Электронная почта</label>
+          <input id="registerEmail" name="email" type="email" required autocomplete="email" placeholder="name@example.com">
+          <label for="registerPassword">Пароль</label>
+          <input id="registerPassword" name="password" type="password" required minlength="8" autocomplete="new-password" placeholder="Не менее 8 символов">
+          <button type="submit" class="primary-button">Зарегистрироваться <span aria-hidden="true">→</span></button>
+          <p id="registerStatus" class="form-notice" role="status"></p>
+        </form>
+
+        <button id="authToggle" class="auth-toggle" type="button">
+          Нет аккаунта? <span>Зарегистрироваться</span>
+        </button>
+      </div>
+      <p class="auth-footnote">Ваше расписание. В одном месте.</p>
+    </section>
+
+    <section id="scheduleView" class="schedule-view" hidden aria-labelledby="scheduleTitle">
+      <div class="schedule-heading">
+        <div>
+          <p class="eyebrow">РАСПИСАНИЕ</p>
+          <h1 id="scheduleTitle">Ваши встречи</h1>
+          <p id="weekLabel" class="week-label"></p>
+        </div>
+        <div class="week-controls" aria-label="Навигация по неделям">
+          <button id="previousWeek" class="icon-button" type="button" aria-label="Предыдущая неделя">←</button>
+          <button id="currentWeek" class="today-button" type="button">Сегодня</button>
+          <button id="nextWeek" class="icon-button" type="button" aria-label="Следующая неделя">→</button>
+        </div>
+      </div>
+
+      <div class="schedule-meta">
+        <div id="scheduleLegend" class="legend">
+          <span><i class="legend-dot free"></i>Свободно</span>
+          <span><i class="legend-dot booked"></i>Занято</span>
+          <span id="mineLegend" hidden><i class="legend-dot mine"></i>Моя запись</span>
+        </div>
+        <button id="refreshSchedule" class="refresh-button" type="button">
+          <span aria-hidden="true">↻</span> Обновить
+        </button>
+      </div>
+
+      <p id="dashboardStatus" class="form-notice" role="status"></p>
+      <div class="calendar-frame">
+        <div id="calendar" class="calendar" aria-live="polite"></div>
+      </div>
+      <p class="schedule-hint" id="scheduleHint">Выберите свободное время, чтобы создать запись.</p>
+    </section>
+  </main>
+
+  <dialog id="appointmentDialog" class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="eyebrow" id="dialogEyebrow">НОВАЯ ВСТРЕЧА</p>
+        <h2 id="dialogTitle">Запись на консультацию</h2>
+        <p id="dialogWhen" class="dialog-when"></p>
+      </div>
+      <button id="closeDialog" class="icon-button close-button" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <form id="bookingForm" class="booking-form">
+      <div id="bookingFields">
+        <label for="bookingName">Ваше имя</label>
+        <input id="bookingName" name="name" required autocomplete="name" placeholder="Как к вам обращаться?">
+        <label for="bookingEmail">Электронная почта</label>
+        <input id="bookingEmail" name="email" type="email" required autocomplete="email" placeholder="name@example.com">
+        <label for="bookingPhone">Телефон <span class="optional">(необязательно)</span></label>
+        <input id="bookingPhone" name="phone" type="tel" autocomplete="tel" placeholder="+371">
+        <label for="bookingMessage">Что хотите обсудить? <span class="optional">(необязательно)</span></label>
+        <textarea id="bookingMessage" name="message" rows="3" placeholder="Коротко опишите ваш вопрос"></textarea>
+        <button id="bookingSubmit" type="submit" class="primary-button">Подтвердить запись <span aria-hidden="true">→</span></button>
+      </div>
+      <p id="appointmentDetails" class="appointment-details" hidden></p>
+      <div id="deleteActions" class="delete-actions" hidden>
+        <button id="deleteAppointment" class="danger-button" type="button">Удалить запись</button>
+        <div id="deleteConfirmation" class="delete-confirmation" hidden>
+          <p>Удалить эту запись? Это действие нельзя отменить.</p>
+          <div class="delete-confirmation-actions">
+            <button id="confirmDeleteAppointment" class="danger-button" type="button">Да, удалить</button>
+            <button id="cancelDeleteAppointment" class="secondary-button" type="button">Отмена</button>
+          </div>
+        </div>
+      </div>
+      <p id="bookingStatus" class="form-notice" role="status"></p>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
