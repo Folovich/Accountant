@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:8080";
+const API_URL = "";
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -24,7 +24,8 @@ async function checkConnection() {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      const result = await response.json().catch(() => null);
+      throw new Error(result?.error || `Ошибка сервера (${response.status})`);
     }
 
     status.textContent = "Сервер доступен";
@@ -64,17 +65,17 @@ function setupForm(formId, statusId, endpoint, successMessage) {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.error || `Ошибка сервера (${response.status})`);
       }
 
       showStatus(status, successMessage, "success");
       form.reset();
     } catch (error) {
-      showStatus(
-        status,
-        "Не удалось отправить данные: сервер недоступен или API ещё не настроен. Ваши данные не сохранены. Попробуйте позже.",
-        "error"
-      );
+      const message = error instanceof TypeError
+        ? "Сервер недоступен. Данные не сохранены. Попробуйте позже."
+        : error.message;
+      showStatus(status, message, "error");
     } finally {
       submitButton.disabled = false;
       submitButton.textContent =
@@ -99,7 +100,7 @@ dateInput.min = localToday;
 setupForm(
   "bookingForm",
   "bookingStatus",
-  "/api/appointments",
+  "/api/appointments/public",
   "Заявка успешно отправлена!"
 );
 
